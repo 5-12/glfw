@@ -1,22 +1,29 @@
 #include <GLFW/glfw3.h>
+#include<cmath>
+int main()
+{
 
-int main() {
-    if (!glfwInit()) return -1;
+	float time = glfwGetTime();
+	if (!glfwInit())
+	{
+		goto clear;
+	}
+	GLFWwindow* window;
+	window = glfwCreateWindow(800, 800, "test", nullptr, nullptr);
+	//int a, b, c, d;
+	while (!glfwWindowShouldClose(window))
+	{
+		glfwPollEvents();
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "改这里写标题", NULL, NULL);
-    if (!window) { glfwTerminate(); return -1; }
+		glClear(GL_COLOR_BUFFER_BIT);
+		glfwSwapBuffers(window);
 
-    glfwMakeContextCurrent(window);
-    while (!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        /* 你的代码写这里 */
-
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
-
-    glfwTerminate();
-    return 0;
+		glfwMakeContextCurrent(window);
+	}
+	//glfwMakeContextCurrent(window);
+	glfwTerminate();
+	return 0;
+clear:
+	return -1;
+	glfwTerminate();
 }
